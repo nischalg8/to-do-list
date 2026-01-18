@@ -1,4 +1,4 @@
-import { Project, addProjectToList } from "./projects.js";
+import { Project, addProjectToList, projectsList } from "./projects.js";
 import { renderAllProjects } from "./renderProjects.js";
 
 // to later export it to index.js 
@@ -17,7 +17,7 @@ function hideForm(projectForm, addProjectBtn) {
 
 function setupProjectForm() {
     const projectFormContainer = document.querySelector(".main__project-form");
-   
+    const addProjectBtn = document.querySelector(".main__add-project");
     projectForm = createProjectForm();
     projectFormContainer.appendChild(projectForm);
 
@@ -30,8 +30,9 @@ function setupProjectForm() {
             formData.get("title"),
             formData.get("description"),
         );
-
+        
         addProjectToList(newProject);
+  
         renderAllProjects();
         projectForm.reset();
     });

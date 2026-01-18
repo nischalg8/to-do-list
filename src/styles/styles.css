@@ -1,5 +1,390 @@
+/* ============================ Reset & Base Styles ============================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hidden {
+    display: none !important;
+}
+
+body {
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* ============================ Sidebar ============================ */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar__title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.sidebar__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.sidebar__menu .btn {
+    background-color: #34495e;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #ecf0f1;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.sidebar__menu .btn:hover {
+    background-color: #1abc9c;
+    transform: scale(1.03);
+}
+
+/* Projects Section */
+.sidebar__projects {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar__projects-title {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    background-color: #1a252f;
+    border-radius: 6px;
+}
+
+.sidebar__projects-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar__projects-list li {
+    background-color: #34495e;
+    padding: 12px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+    margin-left: 0;
+}
+
+.sidebar__projects-list li:hover {
+    background-color: #3d5a73;
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar__projects-list li.active {
+    background-color: #16a085;
+    font-weight: bold;
+    border-left: 4px solid #1abc9c;
+}
+
+/* ============================ Main Content ============================ */
+.main {
+    margin-left: 280px;
+    padding: 25px 30px;
+}
+
+.main__title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.main__add-project {
+    padding: 10px 16px;
+    border: none;
+    background-color: #1abc9c;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.main__add-project:hover {
+    background-color: #16a085;
+    transform: scale(1.03);
+}
+
+.main__active-project {
+    margin-top: 25px;
+}
+
+/* Active Project Header */
+.main__active-project h1.project-title {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+    color: #34495e;
+}
+
+.main__active-project p.project-desc {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 6px;
+}
+
+.main__active-project p.project-date {
+    font-size: 0.9rem;
+    color: #95a5a6;
+    margin-bottom: 15px;
+}
+
+/* ============================ Project Form ============================ */
+.project-form {
+    background-color: #fff;
+    padding: 20px 20px 25px 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    margin-top: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+}
+
+.project-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.95rem;
+    color: #34495e;
+}
+
+.project-form input,
+.project-form select {
+    padding: 8px 10px;
+    margin-top: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.project-form button {
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border: none;
+    transition: all 0.2s;
+}
+
+/* Close Button Top-Right */
+.project-form__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #e74c3c;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    border: none;
+    z-index: 10;
+}
+
+.project-form__close:hover {
+    background-color: #c0392b;
+    transform: scale(1.1);
+}
+
+/* Submit/Add Button Bottom-Right */
+.project-form__submit {
+    background-color: #1abc9c;
+    color: white;
+    align-self: flex-end;
+}
+
+.project-form__submit:hover {
+    background-color: #16a085;
+}
+
+/* ============================ Tasks List ============================ */
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fff;
+    padding: 12px 40px 12px 14px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+    position: relative;
+    min-height: 50px;
+}
+
+/* Checkbox */
+.task-completed-checkbox {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Title and Due Date */
+.task-title {
+    flex: 1;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-right: 15px;
+}
+
+.task-due-date {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+/* Delete Button */
+.delete-task-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    z-index: 5;
+}
+
+.delete-task-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.1);
+}
+
+/* Completed Task Style */
+.task.completed {
+    background-color: #ecf0f1;
+    text-decoration: line-through;
+    color: #95a5a6;
+}
+
+/* Status Label */
+.task-status {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-left: auto;
+    padding-right: 30px;
+}
+
+/* ============================ Priority Indicator ============================ */
+.task-priority-indicator {
+    width: 6px;
+    height: 100%;
+    border-radius: 3px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.priority-low {
+    background-color: #2ecc71;
+}
+
+.priority-medium {
+    background-color: #f1c40f;
+}
+
+.priority-high {
+    background-color: #e74c3c;
+}
+
+/* ============================ Add Task Button ============================ */
+.add-task-btn {
+    padding: 8px 12px;
+    margin-top: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-start;
+    transition: all 0.2s;
+}
+
+.add-task-btn:hover {
+    background-color: #2980b9;
+    transform: scale(1.03);
+}
+
+/* ============================ Add Task Form ============================ */
+.add-task-form {
+    position: relative;
+    background-color: #fff;
+    padding: 16px 18px 20px 18px;
+    margin-top: 12px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+}
 
 
-.hidden{
-    display: none;
+/* Confirm Button Bottom-Right */
+.add-task-confirm {
+    align-self: flex-end;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.add-task-confirm:hover {
+    background-color: #16a085;
+}
+
+/* Input & select styling */
+.add-task-form input,
+.add-task-form select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #bdc3c7;
 }

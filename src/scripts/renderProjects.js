@@ -7,42 +7,47 @@ function dateFormatter(date) {
 }
 
 function setupAddTaskBtn(project, projectDetailsContainer) {
+     // avoid multiple clicks
+
+     if (projectDetailsContainer.querySelector(".add-task-btn")) return;
+
     const addTaskBtn = document.createElement("button");
     addTaskBtn.classList.add("add-task-btn");
     addTaskBtn.textContent = "+ Add Task";
 
     addTaskBtn.addEventListener("click", () => {
-            // avoid multiple clicks
         if (projectDetailsContainer.querySelector(".add-task-form")) return;
-
+           
         const addTaskForm = document.createElement("div");
         addTaskForm.classList.add("add-task-form");
 
         addTaskForm.innerHTML = `
-              <input type="text" class="task-input-title" name='title' placeholder="Task title" required/>
-              <input type="date" class="task-input-date" name='dueDate' required/>
-              <select class="task-input-priority" name='priority'>
-              <option value="low">Low</option>
-              <option value="medium" selected>Medium</option>
-              <option value="high">High</option>
-              </select>
-              <button class="add-task-confirm">Add</button>
+              
+            <input type="text" class="task-input-title" placeholder="Task title" required/>
+            <input type="date" class="task-input-date" required/>
+            <select class="task-input-priority">
+                <option value="low">Low</option>
+                <option value="medium" selected>Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button class="add-task-confirm">Add</button>
             `;
         addTaskForm.querySelector(".add-task-confirm").addEventListener("click", () => {
-                const formData = new FormData(addTaskForm);
+                const title = addTaskForm.querySelector(".task-input-title").value;
+            const dueDate = new Date(addTaskForm.querySelector(".task-input-date").value);
+            const priority = addTaskForm.querySelector(".task-input-priority").value;
 
-                const newTask = new Tasks(
-                    formData.get("title"),
-                    formData.get("dueDate"),
-                    formData.get("priority"),
-                );
-                project.tasks.push(newTask);
-                renderActiveProject();
-                addTaskForm.remove()
+            if (!title || !dueDate) return; // simple validation
+
+            const newTask = new Tasks(title, dueDate, priority);
+            project.tasks.push(newTask);
+            renderActiveProject();
             });
+         projectDetailsContainer.appendChild(addTaskForm);
         
     });
-    projectDetailsContainer.appendChild(addTaskForm);
+   
+    projectDetailsContainer.appendChild(addTaskBtn);
 }
 
 function taskCompletedLabel(task, taskDiv) {
@@ -114,7 +119,7 @@ function displayTaskList(project, projectDetailsContainer) {
     });
        
     projectDetailsContainer.appendChild(tasksList);
-    setupAddTaskBtn(project, projectDetailsContainer);
+    
 }
 
 
@@ -165,11 +170,12 @@ export function renderActiveProject() {
         <h1 class='project-title'>${activeProject.title}</h1>
         <p class='project-desc'>${activeProject.description}</p>
         <p class='project-date'>
-            ${dateFormatter(activeProject.createdAt)}
+           Created At: ${dateFormatter(activeProject.createdAt)}
         </p>
     `;
-
+    
     displayTaskList(activeProject, activeProjectDetails);
+    setupAddTaskBtn(activeProject, activeProjectDetails);
 }
 
 
