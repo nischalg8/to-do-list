@@ -1,16 +1,16 @@
-import {Task} from "./tasks.js";
+import {Tasks} from "./tasks.js";
 
-export let projectsList =  [];//later in persistent storage
-export class Project {
+let projectsList =  [];//later in persistent storage
+class Project {
     constructor(title, description) {
         this.id = crypto.randomUUID();
         this.title = title;
         this.description = description;
-        this.createdAt = Date.now();
+        this.createdAt = new Date();
         this.tasks = [];
     }
     addTask(task) {
-        if (task instanceof Task) {
+        if (task instanceof Tasks) {
             this.tasks.push(task);
         } else {
             console.error("This does not fit the task class!");
@@ -25,7 +25,8 @@ export class Project {
     }
 }
 
-
 function addProjectToList(project){
     projectsList.push(project)
 }
+
+export {projectsList, addProjectToList, Project};

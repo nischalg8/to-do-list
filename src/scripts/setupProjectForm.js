@@ -1,36 +1,45 @@
 import { Project, addProjectToList } from "./projects.js";
+import { renderAllProjects } from "./renderProjects.js";
+
+// to later export it to index.js 
+let projectForm = null;
+
+function showForm(projectForm, addProjectBtn) {
+    projectForm.classList.remove("hidden");
+    addProjectBtn.classList.add("hidden");
+}
+
+function hideForm(projectForm, addProjectBtn) {
+    projectForm.classList.add("hidden");
+    addProjectBtn.classList.remove("hidden");
+    projectForm.reset();
+}
+
 function setupProjectForm() {
-    const projectsView = document.querySelector(".projects-view");
-    const openFormBtn = document.querySelector(".projects-view__add-project");
+    const projectFormContainer = document.querySelector(".main__project-form");
+   
+    projectForm = createProjectForm();
+    projectFormContainer.appendChild(projectForm);
 
-    const projectForm = createProjectForm();
-    projectsView.appendChild(projectForm);
+    const removeFormBtn = projectForm.querySelector(".project-form__close");
 
-    const closeFormBtn = projectForm.querySelector(".project-form__close");
-
-    function showForm() {
-        projectForm.classList.remove("hidden");
-        openFormBtn.classList.add("hidden");
-    }
-    function hideForm() {
-        projectForm.classList.add("hidden");
-        openFormBtn.classList.remove("hidden");
-        projectForm.reset();
-    }
     projectForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const formData = new FormData(projectForm);
         const newProject = new Project(
             formData.get("title"),
-            formData.get("description")
+            formData.get("description"),
         );
+
         addProjectToList(newProject);
-        hideForm();
+        renderAllProjects();
+        projectForm.reset();
     });
 
-    openFormBtn.addEventListener("click", showForm);
-
-    closeFormBtn.addEventListener("click", hideForm);
+    removeFormBtn.addEventListener("click", () => {
+        hideForm(projectForm, addProjectBtn);
+    });
+    
 }
 function createProjectForm() {
     const form = document.createElement("form");
@@ -56,4 +65,9 @@ function createProjectForm() {
     return form;
 }
 
-export { setupProjectForm };
+//form getter for index.js
+function getProjectForm()
+{
+    return projectForm;
+}
+export { setupProjectForm, showForm, getProjectForm };

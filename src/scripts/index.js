@@ -1,9 +1,22 @@
-import "../styles/styles.css"
-import {addProjectForm} from "./addProjectForm.js"
+import "../styles/styles.css";
+import { setupProjectForm, showForm, getProjectForm} from "./setupProjectForm.js";
+import { renderActiveProject, renderAllProjects } from "./renderProjects.js";
 
-const btn_add_tasks = documnent.querySelector('.btn-add-projects');
-const btn_today = documnent.querySelector('.btn-today');
-const btn_upcoming = document.querySelector('.btn-upcoming');
+document.addEventListener("DOMContentLoaded", () => {
+    setupProjectForm();
+    renderAllProjects();
+    renderActiveProject();
+});
+export let activeProjectID = null;
+export function setActiveProject(id) {
+    activeProjectID = id;
+}
 
+export function getActiveProject() {
+    return activeProjectID;
+}
 
-addProjectForm();
+const addProjectBtn = document.querySelector(".main__add-project");
+addProjectBtn.addEventListener("click", ()=> {
+        showForm(getProjectForm(), addProjectBtn);
+});

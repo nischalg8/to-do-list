@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>To Do List</title>
-       
     </head>
     <body>
         <aside class="sidebar">
@@ -18,20 +17,16 @@
 
             <section class="sidebar__projects">
                 <h2 class="sidebar__projects-title">My Projects</h2>
-                <ul id="projects" class="projects">
+                <ul id="sidebar__projects-list" class="projects-list">
                     <!-- Project items will be dynamically added here -->
                 </ul>
             </section>
         </aside>
         <main class="main">
-            <div class="projects-view">
-                <h1 id="projects-view__title">My Projects</h1>
-                <div class="projects-view__container"
-                    id="projects-container"
-                >
-                </div>
-                <button class="projects-view__add-project">Add a project</button>
-            </div>
+            <h1 class="main__title">What's cookin'?</h1>
+            <button class="main__add-project">Add a project</button>
+            <div class="main__active-project"></div>
+            <div class="main__project-form"></div>
         </main>
     </body>
 </html>
