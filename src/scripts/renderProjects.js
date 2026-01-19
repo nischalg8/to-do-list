@@ -68,7 +68,9 @@ function taskCompletedLabel(task, taskDiv) {
         
         if (task.priority) {
             const priority = document.createElement('div');
-            priority.classList.add(`priority-${task.priority}`);
+            priority.classList.add('task-priority-indicator')
+            priority.classList.add(`${task.priority}`);
+            console.log(task.priority)
             taskDiv.append(priority);
         }
      
